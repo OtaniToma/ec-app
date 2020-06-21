@@ -5,7 +5,7 @@ export const UsersReducer = (state = initialState.users, action) => {
   switch (action.type) {
     case Actions.SIGN_IN: {
       return {
-        ...state,
+        ...state, // 今回変更しないstateも含めてreturnしないと、既存のstateが失われる
         ...action.payload
       }
     }
