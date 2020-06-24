@@ -1,5 +1,4 @@
 export const SIGN_IN = 'SIGN_IN';
-
 export const signInAction = (userState) => {
   return {
     type: 'SIGN_IN',
@@ -14,12 +13,13 @@ export const signInAction = (userState) => {
 
 
 export const SIGN_OUT = 'SIGN_OUT';
-
-export const signOutAction = (userState) => {
+export const signOutAction = () => {
   return {
     type: 'SIGN_OUT',
+    // payloadをinitialStateの状態に戻す
     payload: {
       isSignedIn: false,
+      role: '',
       uid: '',
       username: ''
     }

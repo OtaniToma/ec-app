@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
-import { SignUp, SignIn, Home } from './templates'
+import { SignUp, SignIn, Reset, Home } from './templates'
 import Auth from './Auth'
 
 const Router = () => {
@@ -8,6 +8,7 @@ const Router = () => {
     <Switch>
       <Route exact path={'/signup'} component={SignUp} />
       <Route exact path={'/signin'} component={SignIn} />
+      <Route exact path={'/signin/reset'} component={Reset} />
 
       <Auth>
         <Route exact path={'(/)?'} component={Home} />
