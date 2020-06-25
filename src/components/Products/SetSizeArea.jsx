@@ -43,10 +43,18 @@ const SetSizeArea = (props) => {
     if (size === '' || quantity === '') {
       return false
     } else {
-      props.setSizes(prevState => [...prevState, { size: size, quantity: quantity }])
-      setIndex(index + 1)
-      setSize('')
-      setQuantity(0)
+      if (index === props.sizes.length) {
+        props.setSizes(prevState => [...prevState, { size: size, quantity: quantity }])
+        setIndex(index + 1)
+        setSize('')
+        setQuantity(0)
+      } else {
+        const newSizes = props.sizes
+        newSizes[index] = {size: size, quantity: quantity}
+        props.setSizes(newSizes)
+        setIndex(newSizes.length)
+        setQuantity(0)
+      }
     }
   }
 
