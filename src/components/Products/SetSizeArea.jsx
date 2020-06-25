@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
 import TextInput from '../UIkit/TextInput'
 import TableContainer from '@material-ui/core/TableContainer'
 import Paper from '@material-ui/core/Paper'
@@ -68,6 +68,10 @@ const SetSizeArea = (props) => {
     const newSizes = props.sizes.filter((item, i) => i !== deleteIndex);
     props.setSizes(newSizes)
   }
+
+  const memoIndex = useMemo(() => {
+    setIndex(props.sizes.length)
+  }, [props.sizes.length])
 
   return (
     <div>
