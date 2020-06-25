@@ -50,6 +50,12 @@ const SetSizeArea = (props) => {
     }
   }
 
+  const editSize = (index, size, quantity) => {
+    setIndex(index)
+    setSize(size)
+    setQuantity(quantity)
+  }
+
   console.log(props)
 
   return (
@@ -67,12 +73,12 @@ const SetSizeArea = (props) => {
           </TableHead>
           <TableBody>
             {props.sizes.length > 0 && (
-              props.sizes.map((item, index) => (
+              props.sizes.map((item, i) => (
                 <TableRow key={item.size}>
                   <TableCell>{item.size}</TableCell>
                   <TableCell>{item.quantity}</TableCell>
                   <TableCell>
-                    <IconButton className={classes.iconCell}>
+                    <IconButton className={classes.iconCell} onClick={()=> editSize(i, item.size, item.quantity)}>
                       <EditIcon />
                     </IconButton>
                   </TableCell>
