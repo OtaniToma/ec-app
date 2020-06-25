@@ -43,12 +43,12 @@ const SetSizeArea = (props) => {
     if (size === '' || quantity === '') {
       return false
     } else {
-      if (index === props.sizes.length) {
+      if (index === props.sizes.length) { // 新規追加時（sizesのlengthとindexの値が一致している）
         props.setSizes(prevState => [...prevState, { size: size, quantity: quantity }])
         setIndex(index + 1)
         setSize('')
         setQuantity(0)
-      } else {
+      } else {　// 新規追加時
         const newSizes = props.sizes
         newSizes[index] = {size: size, quantity: quantity}
         props.setSizes(newSizes)
@@ -64,10 +64,12 @@ const SetSizeArea = (props) => {
     setQuantity(quantity)
   }
 
-  console.log(props)
+  const deleteSize = (deleteIndex) => {
+    const newSizes = props.sizes.filter((item, i) => i !== deleteIndex);
+    props.setSizes(newSizes)
+  }
 
   return (
-    
     <div>
       <TableContainer component={Paper}>
         <Table>
@@ -91,7 +93,7 @@ const SetSizeArea = (props) => {
                     </IconButton>
                   </TableCell>
                   <TableCell>
-                    <IconButton className={classes.iconCell}>
+                    <IconButton className={classes.iconCell} onClick={() => deleteSize(i)}>
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>
