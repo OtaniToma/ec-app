@@ -49,8 +49,13 @@ const ProductEdit = () => {
     if (id !== '') {
       db.collection('products').doc(id).get()
         .then(snapshot => {
-          const data = snapshot.data()
-          console.log(data)
+          const data = snapshot.data();
+          setImages(data.images);
+          setName(data.name);
+          setDescription(data.description);
+          setCategory(data.category);
+          setGender(data.gender);
+          setPrice(data.price);
         })
     }
   }, [id]);
