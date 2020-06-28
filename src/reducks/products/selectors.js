@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 
 const userSelector = (state) => state.users;
+const productsSelector = (state) => state.products;
 
 export const getIsSignedIn = createSelector(
   [userSelector],
@@ -15,4 +16,9 @@ export const getUserId = createSelector(
 export const getUsername = createSelector(
   [userSelector],
   state => state.username
+)
+
+export const getProducts = createSelector(
+  [productsSelector],
+  state => state.list
 )
