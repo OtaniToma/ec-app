@@ -1,6 +1,6 @@
 import { db, FirebaseTimestamp } from '../../firebase'
 import { push } from 'connected-react-router'
-import { fetchProductsAction } from './actions'
+import { fetchProductsAction, deleteProductAction } from './actions'
 
 const productsRef = db.collection('products')
 
@@ -46,6 +46,17 @@ export const saveProduct = (id, name, description, category, gender, price, imag
       })
       .catch((error) => {
         throw new Error(error)
+      })
+  }
+}
+
+export const deleteProduct = (id) => {
+  return async (dispatch, getState) => {
+    productsRef.doc(id).delete()
+      .then(() => {
+        const prevProducts = getState().products.list
+        const nextProducts = prevProducts.filter(product => product.id !== id)
+        dispatch(deleteProductAction(nextProducts))
       })
   }
 }
