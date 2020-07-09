@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import MenuIcon from '@material-ui/icons/Menu';
 import { getUserId, getProductsInCart } from '../../reducks/users/selectors';
 import { db } from '../../firebase/index';
+import { fetchProductsInCart } from '../../reducks/users/operations';
 
 const HeaderMenus = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const HeaderMenus = (props) => {
   let productsInCart = getProductsInCart(selector);
 
   useEffect(() => {
-    const unsubscribe = db.collection('users').doc(uid).collection()
+    const unsubscribe = db.collection('users').doc(uid).collection('cart')
     .onSnapshot(snapshots => {
       snapshots.docChanges().forEach(change => {
         const product = change.doc.data();
@@ -36,10 +37,8 @@ const HeaderMenus = (props) => {
             break;
         }
       })
-
       dispatch(fetchProductsInCart(productsInCart));
     })
-
     return () => unsubscribe()
   }, []);
 
