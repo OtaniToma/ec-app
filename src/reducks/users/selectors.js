@@ -7,6 +7,11 @@ export const getIsSignedIn = createSelector(
   state => state.isSignedIn
 )
 
+export const getOrdersHistory = createSelector(
+  [userSelector],
+  state => state.orders
+)
+
 export const getProductsInCart = createSelector(
   [userSelector],
   state => state.cart
